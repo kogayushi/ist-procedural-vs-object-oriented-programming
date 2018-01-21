@@ -30,6 +30,7 @@ import org.junit.runner.RunWith;
 public class IdentityServiceTest {
     private static final String TEST_USER_ID = "8A1E74BD-FBC9-43B2-9AAC-0D356022F887";
 
+    private static final String SHORTER_THAN_4                      = "Ps3";
     private static final String SHORTER_THAN_8                      = "1234567";
     private static final String GREATER_THAN_20                     = "123456789012345678901";
     private static final String NOT_CONTAINS_UPPER_CASE_ALPHABET    = "loweralphabet8";
@@ -44,13 +45,13 @@ public class IdentityServiceTest {
     private static final String CONTAINS_TELEPHONE_NUMBER           = "09012345678Password";
 
     @DataPoints("policySatisfiedUsernames")
-    public static String[] POLICY_SATISFIED_USERNAME_FIXTURE = {"Passw00rd", "Hogeh0ge", "WhiteDay314"};
+    public static String[] POLICY_SATISFIED_USERNAME_FIXTURE = {"Psw0", "Hogeh0ge", "WhiteDay314"};
 
     @DataPoints("policySatisfiedPasswords")
     public static String[] POLICY_SATISFIED_PASSWORD_FIXTURE = {"Passw00rd", "Hogeh0ge", "WhiteDay314"};
 
     @DataPoints("policyViolatedUsernames")
-    public static String[] POLICY_VIOLATED_USERNAME_FIXTURE = { SHORTER_THAN_8,
+    public static String[] POLICY_VIOLATED_USERNAME_FIXTURE = { SHORTER_THAN_4,
                                                                 GREATER_THAN_20,
                                                                 NOT_CONTAINS_UPPER_CASE_ALPHABET,
                                                                 NOT_CONTAINS_LOWER_CASE_ALPHABET,
