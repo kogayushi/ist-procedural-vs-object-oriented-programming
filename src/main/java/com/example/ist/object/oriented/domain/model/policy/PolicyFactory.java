@@ -31,7 +31,6 @@ public class PolicyFactory {
     private Set<CredentialPolicy> commonPolicies(User user) {
         Set<CredentialPolicy> policies = new LinkedHashSet<>();
 
-        policies.add(new LengthPolicy(8, 20));
         // Compositeパターン refer -> https://ja.wikipedia.org/wiki/Composite_%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3
         policies.add(new CharacterCombinationPolicy());
 
