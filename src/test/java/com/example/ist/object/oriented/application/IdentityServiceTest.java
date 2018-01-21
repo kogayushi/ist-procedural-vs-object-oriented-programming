@@ -51,7 +51,7 @@ public class IdentityServiceTest {
     private static final String CONTAINS_TELEPHONE_NUMBER           = "09012345678Password";
 
     @DataPoints("policySatisfiedUsernames")
-    public static String[] POLICY_SATISFIED_USERNAME_FIXTURE = {"Pas0", "Hogeh0ge", "WhiteDay314"};
+    public static String[] POLICY_SATISFIED_USERNAME_FIXTURE = {"Pas0", "Hogeh0ge", "WhiteDay314", SAME_WITH_MAIL_ADDRESS};
 
     @DataPoints("policySatisfiedPasswords")
     public static String[] POLICY_SATISFIED_PASSWORD_FIXTURE = {"Passw00rd", "Hogeh0ge", "WhiteDay314"};
@@ -67,9 +67,7 @@ public class IdentityServiceTest {
                                                                 SAME_WITH_CURRENT_PASSWORD,
                                                                 CONTAINS_FIRST_NAME,
                                                                 CONTAINS_LAST_NAME,
-                                                                SAME_WITH_MAIL_ADDRESS,
                                                                 CONTAINS_TELEPHONE_NUMBER};
-
 
     @DataPoints("policyViolatedPasswords")
     public static String[] POLICY_VIOLATED_PASSWORD_FIXTURE = { SHORTER_THAN_8,
