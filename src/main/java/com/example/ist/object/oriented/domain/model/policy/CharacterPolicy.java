@@ -1,10 +1,10 @@
 package com.example.ist.object.oriented.domain.model.policy;
 
-import com.example.ist.object.oriented.domain.model.identity.AuthenticationFactor;
+import com.example.ist.object.oriented.domain.model.identity.Password;
 
 import java.util.regex.Pattern;
 
-public class CharacterPolicy extends Policy {
+public class CharacterPolicy extends CredentialPolicy {
     private final Pattern pattern;
 
     public CharacterPolicy(String regex) {
@@ -12,8 +12,8 @@ public class CharacterPolicy extends Policy {
     }
 
     @Override
-    protected boolean notSatisfiedBy(AuthenticationFactor factor) {
-        return !pattern.matcher(factor.getValue()).find();
+    protected boolean notSatisfiedBy(Password password) {
+        return !pattern.matcher(password.getValue()).find();
     }
 
 }

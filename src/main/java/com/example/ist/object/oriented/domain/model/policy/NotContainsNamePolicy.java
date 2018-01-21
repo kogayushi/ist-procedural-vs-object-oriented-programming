@@ -1,8 +1,8 @@
 package com.example.ist.object.oriented.domain.model.policy;
 
-import com.example.ist.object.oriented.domain.model.identity.AuthenticationFactor;
+import com.example.ist.object.oriented.domain.model.identity.Password;
 
-public class NotContainsNamePolicy extends Policy {
+public class NotContainsNamePolicy extends CredentialPolicy {
     private final String firstName;
     private final String lastName;
 
@@ -12,8 +12,8 @@ public class NotContainsNamePolicy extends Policy {
     }
 
     @Override
-    protected boolean notSatisfiedBy(AuthenticationFactor factor) {
-        return factor.getValue().toUpperCase().contains(this.firstName.toUpperCase())
-                || factor.getValue().toUpperCase().contains(this.lastName.toUpperCase());
+    protected boolean notSatisfiedBy(Password password) {
+        return password.getValue().toUpperCase().contains(this.firstName.toUpperCase())
+                || password.getValue().toUpperCase().contains(this.lastName.toUpperCase());
     }
 }

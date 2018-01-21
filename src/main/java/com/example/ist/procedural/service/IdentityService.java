@@ -91,7 +91,7 @@ public class IdentityService {
             throw new ViolatedPasswordPolicyException(msg);
         }
 
-        userDao.updatePassword(user.getId(), newPassword);
+        userDao.updatePassword(id, newPassword);
 
     }
 
