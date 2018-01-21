@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.*;
 import com.example.ist.procedural.dao.UserDao;
 import com.example.ist.procedural.entity.User;
 import com.example.ist.procedural.exception.ViolatedPasswordPolicyException;
+import com.example.ist.procedural.exception.ViolatedUsernamePolicyException;
 import com.example.ist.procedural.service.IdentityService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +43,25 @@ public class IdentityServiceTest {
     private static final String SAME_WITH_MAIL_ADDRESS              = "K314@is-tech.co.jp";
     private static final String CONTAINS_TELEPHONE_NUMBER           = "09012345678Password";
 
+    @DataPoints("policySatisfiedUsernames")
+    public static String[] POLICY_SATISFIED_USERNAME_FIXTURE = {"Passw00rd", "Hogeh0ge", "WhiteDay314"};
+
     @DataPoints("policySatisfiedPasswords")
     public static String[] POLICY_SATISFIED_PASSWORD_FIXTURE = {"Passw00rd", "Hogeh0ge", "WhiteDay314"};
+
+    @DataPoints("policyViolatedUsernames")
+    public static String[] POLICY_VIOLATED_USERNAME_FIXTURE = { SHORTER_THAN_8,
+                                                                GREATER_THAN_20,
+                                                                NOT_CONTAINS_UPPER_CASE_ALPHABET,
+                                                                NOT_CONTAINS_LOWER_CASE_ALPHABET,
+                                                                NOT_CONTAINS_NUMBER,
+                                                                CONTAINS_INVALID_CHARACTER,
+                                                                SAME_WITH_CURRENT_USERNAME,
+                                                                SAME_WITH_CURRENT_PASSWORD,
+                                                                CONTAINS_FIRST_NAME,
+                                                                CONTAINS_LAST_NAME,
+                                                                SAME_WITH_MAIL_ADDRESS,
+                                                                CONTAINS_TELEPHONE_NUMBER};
 
     @DataPoints("policyViolatedPasswords")
     public static String[] POLICY_VIOLATED_PASSWORD_FIXTURE = { SHORTER_THAN_8,
@@ -75,7 +93,46 @@ public class IdentityServiceTest {
 
     @Before
     public void setUp() {
+        userDao.updateUsername(TEST_USER_ID, "Yushi.Koga.314");
         userDao.updatePassword(TEST_USER_ID, "Passw0rd");
+    }
+
+    @Theory
+    public void testChangeUsernameWithPolicySatisfiedUsername(@FromDataPoints("policySatisfiedUsernames") String fixture) throws Exception {
+
+        try {
+
+            // exercise
+            sut.changeUsername(TEST_USER_ID, fixture);
+
+        } finally {
+            // verify
+            User actual = userDao.selectBy(TEST_USER_ID);
+
+            assertThat(actual.getUsername(), is(fixture));
+        }
+    }
+
+    @Theory
+    public void testChangeUsernameWithPolicyViolatedUsername(@FromDataPoints("policyViolatedUsernames") String fixture) throws Exception {
+        // set up
+        thrown.expect(ViolatedUsernamePolicyException.class);
+        User user = this.userDao.selectBy(TEST_USER_ID);
+
+        try {
+
+            // exercise
+            sut.changeUsername(TEST_USER_ID, fixture);
+
+        } finally {
+            // verify
+            User actual = userDao.selectBy(TEST_USER_ID);
+
+            if (!SAME_WITH_CURRENT_USERNAME.equals(fixture)) {
+                assertThat(actual.getUsername(), is(not(fixture)));
+            }
+            assertThat(actual.getUsername(), is(user.getUsername()));
+        }
     }
 
     @Theory
