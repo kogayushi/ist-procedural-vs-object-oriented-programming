@@ -15,11 +15,15 @@ public class PolicyFactory {
     public UsernamePolicy generateUsernamePolicyFor(User user) {
         Set<CredentialPolicy> policies = commonPolicies(user);
 
+        policies.add(new LengthPolicy(4, 20));
+
         return new UsernamePolicy(policies);
     }
 
     public PasswordPolicy generatePasswordPolicyFor(User user) {
         Set<CredentialPolicy> policies = commonPolicies(user);
+
+        policies.add(new LengthPolicy(8, 20));
 
         return new PasswordPolicy(policies);
     }
