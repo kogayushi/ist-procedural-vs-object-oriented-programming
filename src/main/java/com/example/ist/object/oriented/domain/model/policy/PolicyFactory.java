@@ -1,6 +1,5 @@
 package com.example.ist.object.oriented.domain.model.policy;
 
-import com.example.ist.object.oriented.domain.model.identity.ContactInformation;
 import com.example.ist.object.oriented.domain.model.identity.Person;
 import com.example.ist.object.oriented.domain.model.identity.User;
 
@@ -24,6 +23,7 @@ public class PolicyFactory {
         Set<CredentialPolicy> policies = commonPolicies(user);
 
         policies.add(new LengthPolicy(8, 20));
+        policies.add(new NotSameWithMailAddressPolicy(user.getPerson().getContactInformation().getMailAddress()));
 
         return new PasswordPolicy(policies);
     }
@@ -38,12 +38,8 @@ public class PolicyFactory {
         policies.add(new NotSameWithCurrentPasswordPolicy(user.getCredentials().getPassword()));
 
         Person person = user.getPerson();
-
         policies.add(new NotContainsNamePolicy(person.getFirstName(), person.getLastName()));
-
-        ContactInformation contactInformation = person.getContactInformation();
-        policies.add(new NotSameWithMailAddressPolicy(contactInformation.getMailAddress()));
-        policies.add(new NotContainsTelephoneNumberPolicy(contactInformation.getTelephoneNumber()));
+        policies.add(new NotContainsTelephoneNumberPolicy(person.getContactInformation().getTelephoneNumber()));
         return policies;
     }
 
