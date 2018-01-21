@@ -27,7 +27,7 @@ public class IdentityService {
     public void changeUsername(String id, String newUsername) {
         User user = this.userDao.selectBy(id);
 
-        if (newUsername.length() < 8 || newUsername.length() > 20) {
+        if (newUsername.length() < 4 || newUsername.length() > 20) {
             String msg = "inputted username violated username length policy";
             log.warn(msg); // it's warn just for testing.
             throw new ViolatedUsernamePolicyException(msg);
