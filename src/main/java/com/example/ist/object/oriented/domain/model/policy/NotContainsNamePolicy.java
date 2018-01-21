@@ -2,11 +2,11 @@ package com.example.ist.object.oriented.domain.model.policy;
 
 import com.example.ist.object.oriented.domain.model.identity.AuthenticationFactor;
 
-public class NotIncludingNamePolicy extends Policy {
+public class NotContainsNamePolicy extends Policy {
     private final String firstName;
     private final String lastName;
 
-    public NotIncludingNamePolicy(String firstName, String lastName) {
+    public NotContainsNamePolicy(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

@@ -34,21 +34,21 @@ public class UserDao  {
     }
 
     public User selectBy(String id) {
-        return this.inMemory.get(id);
+        return this.inMemory.get(id.toUpperCase());
     }
 
     public void updateUsername(String id, String username) {
-        User user = this.inMemory.get(id);
+        User user = this.inMemory.get(id.toUpperCase());
         user.setUsername(username);
-        this.inMemory.put(user.getUsername(), user);
+        this.inMemory.put(id.toUpperCase(), user);
         log.info("{}'s username has been updated with {}", id, username);
 
     }
 
     public void updatePassword(String id, String password) {
-        User user = this.inMemory.get(id);
+        User user = this.inMemory.get(id.toUpperCase());
         user.setPassword(password);
-        this.inMemory.put(user.getUsername(), user);
+        this.inMemory.put(id.toUpperCase(), user);
         log.info("{}'s password has been updated with {}", id, password);
     }
 

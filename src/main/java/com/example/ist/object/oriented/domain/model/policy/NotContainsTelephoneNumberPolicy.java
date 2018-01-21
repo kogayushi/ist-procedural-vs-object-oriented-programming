@@ -6,12 +6,12 @@ import com.example.ist.object.oriented.domain.model.identity.TelephoneNumber;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class NotSameWithTelephonNumberPolicy extends Policy {
+public class NotContainsTelephoneNumberPolicy extends Policy<AuthenticationFactor> {
     private final TelephoneNumber telephoneNumber;
 
     @Override
     public boolean notSatisfiedBy(AuthenticationFactor factor) {
-        return this.telephoneNumber.getValue().equals(factor.getValue());
+        return factor.getValue().contains(this.telephoneNumber.getValue().replaceAll("-", ""));
     }
 
 }

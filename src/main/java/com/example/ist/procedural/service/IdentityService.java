@@ -85,8 +85,8 @@ public class IdentityService {
             throw new ViolatedPasswordPolicyException(msg);
         }
 
-        if (newPassword.equals(user.getTelephoneNumber())) {
-            String msg = "inputted password violated not same with mail address policy";
+        if (newPassword.contains((user.getTelephoneNumber().replace("-", "")))) {
+            String msg = "inputted password violated not contains telephone number policy";
             log.warn(msg);
             throw new ViolatedPasswordPolicyException(msg);
         }

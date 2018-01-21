@@ -9,13 +9,16 @@ import java.util.Set;
 
 @Slf4j
 @RequiredArgsConstructor
-public class PasswordPolicy {
+public class PasswordPolicy extends Policy<Password> {
 
     private final Set<Policy> policies;
 
-    public void validate(Password password) {
+    @Override
+    protected boolean notSatisfiedBy(Password password) {
         for (Policy policy : policies) {
-            policy.validate(password);
+            if (policy.notSatisfiedBy(password)) {
+                return true;
+            }
         }
     }
 }

@@ -31,16 +31,16 @@ public class IdentityServiceTest {
 
     private static final String SHORTER_THAN_8                      = "1234567";
     private static final String GREATER_THAN_20                     = "123456789012345678901";
-    private static final String NOT_INCLUDING_UPPER_CASE_ALPHABET   = "loweralphabet8";
-    private static final String NOT_INCLUDING_LOWER_CASE_ALPHABET   = "UPPERALPHABET8";
-    private static final String NOT_INCLUDING_NUMBER                = "alphabetONLY";
-    private static final String INCLUDING_INVALID_CHARACTER         = "Passw0rdぱすわーど";
-    private static final String SAME_WITH_USERNAME                  = "Yushi.Koga.314";
+    private static final String NOT_CONTAINS_UPPER_CASE_ALPHABET    = "loweralphabet8";
+    private static final String NOT_CONTAINS_LOWER_CASE_ALPHABET    = "UPPERALPHABET8";
+    private static final String NOT_CONTAINS_NUMBER                 = "alphabetONLY";
+    private static final String CONTAINS_INVALID_CHARACTER          = "Passw0rdぱすわーど";
+    private static final String SAME_WITH_CURRENT_USERNAME          = "Yushi.Koga.314";
     private static final String SAME_WITH_CURRENT_PASSWORD          = "Passw0rd";
-    private static final String INCLUDING_FIRST_NAME                = "Yushi314";
-    private static final String INCLUDING_LAST_NAME                 = "Koga314";
+    private static final String CONTAINS_FIRST_NAME                 = "Yushi0314";
+    private static final String CONTAINS_LAST_NAME                  = "Koga0314";
     private static final String SAME_WITH_MAIL_ADDRESS              = "K314@is-tech.co.jp";
-    private static final String SAME_WITH_TELEPHONE_NUMBER          = "090-1234-5678";
+    private static final String CONTAINS_TELEPHONE_NUMBER           = "09012345678Password";
 
     @DataPoints("policySatisfiedPasswords")
     public static String[] POLICY_SATISFIED_PASSWORD_FIXTURE = {"Passw00rd", "Hogeh0ge", "WhiteDay314"};
@@ -48,16 +48,16 @@ public class IdentityServiceTest {
     @DataPoints("policyViolatedPasswords")
     public static String[] POLICY_VIOLATED_PASSWORD_FIXTURE = { SHORTER_THAN_8,
                                                                 GREATER_THAN_20,
-                                                                NOT_INCLUDING_UPPER_CASE_ALPHABET,
-                                                                NOT_INCLUDING_LOWER_CASE_ALPHABET,
-                                                                NOT_INCLUDING_NUMBER,
-                                                                INCLUDING_INVALID_CHARACTER,
-                                                                SAME_WITH_USERNAME,
+                                                                NOT_CONTAINS_UPPER_CASE_ALPHABET,
+                                                                NOT_CONTAINS_LOWER_CASE_ALPHABET,
+                                                                NOT_CONTAINS_NUMBER,
+                                                                CONTAINS_INVALID_CHARACTER,
+                                                                SAME_WITH_CURRENT_USERNAME,
                                                                 SAME_WITH_CURRENT_PASSWORD,
-                                                                INCLUDING_FIRST_NAME,
-                                                                INCLUDING_LAST_NAME,
+                                                                CONTAINS_FIRST_NAME,
+                                                                CONTAINS_LAST_NAME,
                                                                 SAME_WITH_MAIL_ADDRESS,
-                                                                SAME_WITH_TELEPHONE_NUMBER };
+                                                                CONTAINS_TELEPHONE_NUMBER};
 
     @ClassRule
     public static final SpringClassRule springClassRule = new SpringClassRule();

@@ -29,7 +29,7 @@ public class PolicyFactory {
 
         ContactInformation contactInformation = person.getContactInformation();
         policies.add(new NotSameWithMailAddressPolicy(contactInformation.getMailAddress()));
-        policies.add(new NotSameWithTelephonNumberPolicy(contactInformation.getTelephoneNumber()));
+        policies.add(new NotContainsTelephoneNumberPolicy(contactInformation.getTelephoneNumber()));
 
         return new PasswordPolicy(policies);
     }
