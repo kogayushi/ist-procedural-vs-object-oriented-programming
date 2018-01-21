@@ -1,21 +1,21 @@
 package com.example.ist.object.oriented.domain.model.policy;
 
-import com.example.ist.object.oriented.domain.exception.ViolatedPasswordPolicyException;
-import com.example.ist.object.oriented.domain.model.identity.Password;
+import com.example.ist.object.oriented.domain.exception.ViolatedCredentialPolicyException;
+import com.example.ist.object.oriented.domain.model.identity.AuthenticationFactor;
 
-public abstract class CredentialPolicy {
+public abstract class CredentialPolicy<T extends AuthenticationFactor> {
     protected String policyName = this.getClass().getSimpleName();
 
-    public final void validate(Password password) {
-        if(notSatisfiedBy(password)) {
-            throwViolatedPasswordPolicyException();
+    public final void validate(T factor) {
+        if(notSatisfiedBy(factor)) {
+            throwViolatedCredentialPolicyException();
         }
     }
 
-    protected abstract boolean notSatisfiedBy(Password password);
+    protected abstract boolean notSatisfiedBy(T factor);
 
-    private void throwViolatedPasswordPolicyException() {
-        throw new ViolatedPasswordPolicyException("violated " + policyName());
+    private void throwViolatedCredentialPolicyException() {
+        throw new ViolatedCredentialPolicyException("violated " + policyName());
     }
 
     protected String policyName() {

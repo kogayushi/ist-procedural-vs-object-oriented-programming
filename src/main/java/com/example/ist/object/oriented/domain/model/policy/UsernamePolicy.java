@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Slf4j
 @RequiredArgsConstructor
-public class UsernamePolicy extends CredentialPolicy {
+public class UsernamePolicy extends CredentialPolicy<Username> {
 
     private final Set<CredentialPolicy> policies;
 
