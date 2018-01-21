@@ -4,7 +4,7 @@ import lombok.Value;
 import org.springframework.util.StringUtils;
 
 @Value
-public class Username implements AuthenticationFactor {
+public class Username {
     private final String value;
 
     public Username(String value) {
