@@ -1,8 +1,8 @@
 package com.example.ist.object.oriented.domain.model.policy;
 
-import com.example.ist.object.oriented.domain.model.identity.Password;
+import com.example.ist.object.oriented.domain.model.identity.AuthenticationFactor;
 
-public class LengthPolicy extends CredentialPolicy {
+public class LengthPolicy extends CredentialPolicy<AuthenticationFactor> {
     private final int min;
     private final int max;
 
@@ -12,8 +12,8 @@ public class LengthPolicy extends CredentialPolicy {
     }
 
     @Override
-    protected boolean notSatisfiedBy(Password password) {
-        int length = password.getValue().length();
+    protected boolean notSatisfiedBy(AuthenticationFactor factor) {
+        int length = factor.getValue().length();
         return this.min > length || length > max;
     }
 }

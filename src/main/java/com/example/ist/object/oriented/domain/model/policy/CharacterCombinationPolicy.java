@@ -1,12 +1,12 @@
 package com.example.ist.object.oriented.domain.model.policy;
 
-import com.example.ist.object.oriented.domain.model.identity.Password;
+import com.example.ist.object.oriented.domain.model.identity.AuthenticationFactor;
 
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class CharacterCombinationPolicy extends CredentialPolicy {
+public class CharacterCombinationPolicy extends CredentialPolicy<AuthenticationFactor> {
     private static final String INCLUDING_UPPER_CASE_ALPHABET_AT_LEAST_ONE  = "^.*[A-Z].*$";
     private static final String INCLUDING_LOWER_CASE_ALPHABET_AT_LEAST_ONE  = "^.*[a-z].*$";
     private static final String INCLUDING_NUMBER_AT_LEAST_ONE               = "^.*[0-9].*$";
@@ -25,9 +25,9 @@ public class CharacterCombinationPolicy extends CredentialPolicy {
     }
 
     @Override
-    protected boolean notSatisfiedBy(Password password) {
+    protected boolean notSatisfiedBy(AuthenticationFactor factor) {
         for (CredentialPolicy policy : policies) {
-            if (policy.notSatisfiedBy(password)) {
+            if (policy.notSatisfiedBy(factor)) {
                 return true;
             }
         }
