@@ -81,12 +81,6 @@ public class IdentityService {
             throw new ViolatedUsernamePolicyException(msg);
         }
 
-        if (newUsername.equals(user.getMailAddress())) {
-            String msg = "inputted username violated not same with mail address policy";
-            log.warn(msg);
-            throw new ViolatedUsernamePolicyException(msg);
-        }
-
         if (newUsername.contains((user.getTelephoneNumber().replace("-", "")))) {
             String msg = "inputted username violated not contains telephone number policy";
             log.warn(msg);
