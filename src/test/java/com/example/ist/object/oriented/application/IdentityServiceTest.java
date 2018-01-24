@@ -38,7 +38,7 @@ public class IdentityServiceTest {
 
     private static final String SHORTER_THAN_4                      = "Ps0";
     private static final String SHORTER_THAN_8                      = "1234567";
-    private static final String GREATER_THAN_20                     = "123456789012345678901";
+    private static final String GREATER_THAN_20                     = "123456789O123456789o1";
     private static final String NOT_CONTAINS_UPPER_CASE_ALPHABET    = "loweralphabet8";
     private static final String NOT_CONTAINS_LOWER_CASE_ALPHABET    = "UPPERALPHABET8";
     private static final String NOT_CONTAINS_NUMBER                 = "alphabetONLY";
