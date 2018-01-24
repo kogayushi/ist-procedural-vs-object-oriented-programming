@@ -12,7 +12,11 @@ import com.example.ist.object.oriented.domain.model.identity.UserRepository;
 import com.example.ist.object.oriented.domain.model.identity.Username;
 import com.example.ist.object.oriented.domain.model.policy.PolicyFactory;
 import com.example.ist.object.oriented.infrastructure.persistence.InMemoryUserRepository;
-import com.example.ist.procedural.exception.ViolatedUsernamePolicyException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.rules.SpringClassRule;
+import org.springframework.test.context.junit4.rules.SpringMethodRule;
 
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -23,10 +27,6 @@ import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.rules.SpringClassRule;
-import org.springframework.test.context.junit4.rules.SpringMethodRule;
 
 import java.util.UUID;
 

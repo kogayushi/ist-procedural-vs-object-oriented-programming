@@ -1,13 +1,13 @@
 package com.example.ist.object.oriented.infrastructure.persistence;
 
 import com.example.ist.object.oriented.domain.model.identity.ContactInformation;
+import com.example.ist.object.oriented.domain.model.identity.Credentials;
 import com.example.ist.object.oriented.domain.model.identity.MailAddress;
 import com.example.ist.object.oriented.domain.model.identity.Password;
 import com.example.ist.object.oriented.domain.model.identity.Person;
 import com.example.ist.object.oriented.domain.model.identity.Sex;
 import com.example.ist.object.oriented.domain.model.identity.TelephoneNumber;
 import com.example.ist.object.oriented.domain.model.identity.User;
-import com.example.ist.object.oriented.domain.model.identity.Credentials;
 import com.example.ist.object.oriented.domain.model.identity.UserRepository;
 import com.example.ist.object.oriented.domain.model.identity.Username;
 
